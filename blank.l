@@ -2,22 +2,23 @@
 #include <stdio.h>
 %}
 
-VAR|BEGIN|PRINT|END {printf( "A keyword: %s\n", yytext );}
-
-space [ \t]
-emptyline [\n ' ']
-semicolon [;]
+EMPTYLINE [\n]
+START PROGRAM
+KEY VAR|BEGIN
+SPACE [ \t]
+EMPTY [ \n]
+EOL [;]
+SEP [,]
 
 %%
 "(*"([a-z]|[0-9]|[A-Z]|[:]|" "|"\n")*(-)*"*)"   {printf("\n");}
+{START}+ {printf("%s ", yytext);}
 
-{space}+ printf("\n");
-
-{emptyline}+ printf(" ");
-
-{semicolon}+ printf(";\n");
-. ECHO;
-
+{KEY}+ {printf("%s\n", yytext);}
+{SPACE}+ {printf("");}
+{EMPTY}+ {printf("");}
+{EOL}+ {printf(";\n");}
+{SEP}+ {printf(", ");}
 %%
 int main()
 {
