@@ -9,6 +9,7 @@ SPACE [ \t]
 EMPTY [ \n]
 EOL [;]
 SEP [,]
+OPS [(+|-|*|/)]
 
 %%
 "(*"([a-z]|[0-9]|[A-Z]|[:]|" "|"\n")*(-)*"*)"   {printf("");}
@@ -19,6 +20,7 @@ SEP [,]
 {EMPTY}+ {printf("");}
 {EOL}+ {printf(";\n");}
 {SEP}+ {printf(", ");}
+{OPS}+ {printf(" %s ", yytext);}
 [*=*] {printf(" = ");}
 [*:*] {printf(": ");}
 %%
