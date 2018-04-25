@@ -19,6 +19,8 @@ SEP [,]
 {EMPTY}+ {printf("");}
 {EOL}+ {printf(";\n");}
 {SEP}+ {printf(", ");}
+[*=*] {printf(" = ");}
+[*:*] {printf(": ");}
 %%
 int main()
 {
