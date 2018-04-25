@@ -11,7 +11,7 @@ EOL [;]
 SEP [,]
 
 %%
-"(*"([a-z]|[0-9]|[A-Z]|[:]|" "|"\n")*(-)*"*)"   {printf("\n");}
+"(*"([a-z]|[0-9]|[A-Z]|[:]|" "|"\n")*(-)*"*)"   {printf("");}
 {START}+ {printf("%s ", yytext);}
 
 {KEY}+ {printf("%s\n", yytext);}
