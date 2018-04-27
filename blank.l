@@ -23,6 +23,7 @@ OPS [(+|-|*|/)]
 {OPS}+ {printf(" %s ", yytext);}
 [*=*] {printf(" = ");}
 [*:*] {printf(": ");}
+
 %%
 int main()
 {
