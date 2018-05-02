@@ -1,5 +1,5 @@
 %{
-#include <stdio.h>
+    #include <stdio.h>
 %}
 
 EMPTYLINE [\n]
@@ -9,18 +9,20 @@ SPACE [ |\t]
 EMPTY [ \n]
 EOL [;]
 SEP [,]
-OPS [(+|-|*|/)]
+OPS [+|\-|*|/]
+PARENS [()]
 
 %%
 "(*"([a-z]|[0-9]|[A-Z]|[:]|" "|"\n")*(-)*"*)"   {printf("");}
 {START}+ {printf("%s ", yytext);}
 
 {KEY}+ {printf("%s\n", yytext);}
-{SPACE} {printf("");}
+{SPACE} {;}
 {EMPTY}+ {printf("");}
 {EOL}+ {printf(";\n");}
 {SEP}+ {printf(", ");}
 {OPS}+ {printf(" %s ", yytext);}
+{PARENS} {printf("%s", yytext);}
 [*=*] {printf(" = ");}
 [*:*] {printf(": ");}
 
